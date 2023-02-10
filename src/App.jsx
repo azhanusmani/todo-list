@@ -3,9 +3,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import TodoInput from "./Components/TodoInput";
 import TodoList from "./Components/TodoList";
+import useLocalStorage from "./Hooks/useLocalStorage";
 
 const App = () => {
-  const [listTodo, setListTodo] = useState([]);
+  const [listTodo, setListTodo] = useLocalStorage("listTodo",[]);
 
   let addList = (inputText) => {
     if (inputText !== "") setListTodo([...listTodo, inputText]);
@@ -17,9 +18,9 @@ const App = () => {
   };
 
   return (
-    <Container className="mb-5">
+    <Container className="mt-5 justify-content-center">
       <TodoInput addList={addList} />
-      <h1> TODO</h1>
+      <h1 className="mt-2"> ToDo's</h1>
       <hr />
       {listTodo.map((listItem, i) => {
         return (
